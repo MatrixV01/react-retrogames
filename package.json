@@ -31,5 +31,6 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0"
-  }
+  },
+  "repository": "https://github.com/MatrixV01/react-retrogames.git"
 }

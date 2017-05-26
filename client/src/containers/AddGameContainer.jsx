@@ -3,14 +3,14 @@ import { hashHistory } from 'react-router';
 import { Form } from '../components';
 
 export default class AddGameContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.state = { newGame: {}};
+    this.state = { newGame: {} };
     this.submit = this.submit.bind(this);
     this.uploadPicture = this.uploadPicture.bind(this);
     this.setGame = this.setGame.bind(this);
   }
-  submit () {
+  submit() {
     const newGame = Object.assign({}, { picture: $('#picture').attr('src') }, this.state.newGame);
     fetch('http://localhost:8080/games', {
       headers: new Headers({
@@ -19,14 +19,14 @@ export default class AddGameContainer extends Component {
       method: 'POST',
       body: JSON.stringify(newGame)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data.message);
-      hashHistory.push('/games');
-    });
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message);
+        hashHistory.push('/games');
+      });
   }
-  uploadPicture () {
-    filepicker.pick (
+  uploadPicture() {
+    filepicker.pick(
       {
         mimetype: 'image/*',
         container: 'modal',
@@ -42,7 +42,7 @@ export default class AddGameContainer extends Component {
       }
     );
   }
-  setGame () {
+  setGame() {
     const newGame = {
       name: document.getElementById('name').value,
       description: document.getElementById('description').value,
@@ -51,7 +51,7 @@ export default class AddGameContainer extends Component {
     };
     this.setState({ newGame });
   }
-  render () {
+  render() {
     return <Form submit={this.submit} uploadPicture={this.uploadPicture} setGame={this.setGame} />
   }
 }
